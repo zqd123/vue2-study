@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{Math.round(1.23)}}</div>
+        <div>{{showBt}}</div>
+        <button v-if="showBt" v-on:click="clickBt">点击</button>
+        <div>时间：{{currentDate | dataFormate('yyyy/MM/dd hh:mm:ss')}}</div>
+        <div v-pre>{{v-pre 内容不被编译}}</div>
+    </div>
+    <script>
+        const globalName = 'zhangqd'
+        const app = new Vue({
+            el:'#app', // 挂载Vue实例
+            data:{
+                showBt:true,
+                timer:null,
+                currentDate: new Date()
+            },
+            filters:{
+                dataFormate(val,formatStr='yyyy-MM-dd hh:mm:ss'){
+                    const date = new Date(val)
+                    const year = date.getFullYear()
+                    const month = date.getMonth()
+                    const day = date.getDay()
+                    const hours = date.getHours()
+                    const minutes = date.getMinutes()
+                    const seconds = date.getSeconds()
+                    const str = formatStr.replace('yyyy',year)
+                    .replace('MM',month>10?month:'0'+month).replace('dd',day>10?day:'0'+day)
+                    .replace('hh',hours>10?hours:'0'+hours).replace('mm',minutes>10?minutes:'0'+minutes)
+                    .replace('ss',seconds>10?seconds:'0'+seconds)
+                    return str
+                }
+            },
+            created(){
+                console.log('created');
+                
+            },
+            mounted(){
+                console.log('mounted');
+                this.getCurrentDate()
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy');
+                window.clearInterval(this.timer)
+            },
+            methods:{
+                clickBt(){
+                    console.log('点击了按钮');                
+                },
+                getCurrentDate(){
+                    this.timer = setInterval(()=>{
+                        this.currentDate = new Date()
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
