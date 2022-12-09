@@ -1,0 +1,438 @@
+{
+    "root": {
+        "data": {
+            "id": "cotnh8bstwg0",
+            "created": 1670219723258,
+            "text": "vue2"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "cotnhgmxpbk0",
+                    "created": 1670219741346,
+                    "text": "new Vue({})实例"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "cotni1rqv0w0",
+                            "created": 1670219787349,
+                            "text": "* el*（必选）"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cotnsh0qr940",
+                                    "created": 1670220604186,
+                                    "text": "css选择器，挂载vue实例"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "cotni0bo5ko0",
+                    "created": 1670219784200,
+                    "text": "生命周期",
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "coto1gtnjq80",
+                            "created": 1670221309035,
+                            "text": "created"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "coto1pqls400",
+                                    "created": 1670221328442,
+                                    "text": "初始化数据"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "coto2nb54go0",
+                            "created": 1670221401517,
+                            "text": "mounted"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "coto3gxrmqg0",
+                                    "created": 1670221466012,
+                                    "text": "DOM挂载完成"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "coto71yqfw80",
+                            "created": 1670221746876,
+                            "text": "beforeDestroy"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "coto7b75ef40",
+                                    "created": 1670221766975,
+                                    "text": "Vue实例销毁前，解绑监听事件"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "cotoxfesq8w0",
+                    "created": 1670223813613,
+                    "text": "指令"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "cotoxq5t2140",
+                            "created": 1670223837014,
+                            "text": "v-html"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cotoxtdy1mo0",
+                                    "created": 1670223844037,
+                                    "text": "xss攻击"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "cotp6ko1plc0",
+                            "created": 1670224530334,
+                            "text": "v-pre"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cotp6lwrnyo0",
+                                    "created": 1670224533038,
+                                    "text": "不编译"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "cots4449u1s0",
+                            "created": 1670232800911,
+                            "text": "v-bind"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cots46a0q6o0",
+                                    "created": 1670232805612,
+                                    "text": "数据单向绑定"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "cotsj73qlnk0",
+                                            "created": 1670233982872,
+                                            "text": "语法糖':'"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "cots4ce6frk0",
+                            "created": 1670232818924,
+                            "text": "v-on"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cots4gxat1s0",
+                                    "created": 1670232828788,
+                                    "text": "普通元素"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "cots4pr04dk0",
+                                            "created": 1670232847998,
+                                            "text": "原生事件"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "cots4tgd1ps0",
+                                                    "created": 1670232856062,
+                                                    "text": "click"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "cots4v3y7tc0",
+                                                    "created": 1670232859665,
+                                                    "text": "dblclick"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "cots5s8dfjk0",
+                                                    "created": 1670232931766,
+                                                    "text": "keyup"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "cots5tvmjug0",
+                                                    "created": 1670232935349,
+                                                    "text": "mousemove"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "cots4z2gbd40",
+                                    "created": 1670232868281,
+                                    "text": "自定义组件"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "cots521mqc80",
+                                            "created": 1670232874762,
+                                            "text": "自定义事件"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "cotsjfendhs0",
+                                    "created": 1670234000946,
+                                    "text": "语法糖：@"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "cots42immyg0",
+                    "created": 1670232797426,
+                    "text": "computed计算属性"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "couij9rkf340",
+                            "created": 1670307337524,
+                            "text": "总结：只要计算属性中有data中的项，当data中的项值发生变化，computed就会触发，类似watch监听器。"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "couil98q0yg0",
+                            "created": 1670307493113,
+                            "text": "get、set"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "couip6g5d4w0",
+                            "created": 1670307800488,
+                            "text": "用途"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "couip8bxtrc0",
+                                    "created": 1670307804587,
+                                    "text": "模板插值"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "couipchcysg0",
+                                    "created": 1670307813622,
+                                    "text": "样式"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "couipfcs0z40",
+                                    "created": 1670307819875,
+                                    "text": "props"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "couiq4opcew0",
+                            "created": 1670307875016,
+                            "text": "计算属性可以依赖其他计算属性"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "couiqa12r140",
+                            "created": 1670307886648,
+                            "text": "计算属性不仅可以依赖当前Vue实例data中的数据，还可以依赖其他Vue实例中的data数据。"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "couisu66f2w0",
+                            "created": 1670308087220,
+                            "text": "和methods对比"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "couisyd9l5s0",
+                                    "created": 1670308096356,
+                                    "text": "methods可以接收参数"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "couit5lkmvc0",
+                                    "created": 1670308112096,
+                                    "text": "computed有缓存"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "cotq3dcnt3c0",
+                    "created": 1670227100425,
+                    "text": "filters过滤器"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "cotq3mm7pxk0",
+                            "created": 1670227120594,
+                            "text": "传参"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cotq3wqh2cw0",
+                                    "created": 1670227142620,
+                                    "text": "参数：默认第一个是值，传递参数从第二个开始接收"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "couix2izzew0",
+                    "created": 1670308418866,
+                    "text": "class和style"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "couixgr60cw0",
+                            "created": 1670308449835,
+                            "text": "class"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "couixnuoizk0",
+                                    "created": 1670308465285,
+                                    "text": "class和:class共存"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "couiyj511io0",
+                                    "created": 1670308533391,
+                                    "text": "对象格式：:class=\"{'active':isActive}\""
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "coujcnc5sbk0",
+                                    "created": 1670309639628,
+                                    "text": "数组格式"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "coujctd65a00",
+                                            "created": 1670309652750,
+                                            "text": ":class=\"[activeVal,errorVal]\""
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "coujdf5tgog0",
+                                            "created": 1670309700194,
+                                            "text": ":class=\"[{'active':isActive},errorVal]\""
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}

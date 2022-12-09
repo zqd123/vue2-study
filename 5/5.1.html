@@ -6,32 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <h2>第三章</h2>
-        <div>{{reverseText}}</div>
-        <input v-model="text">
+        <h2>第五章</h2>
+        <div v-cloak>{{messageText}}</div>
+        <div v-once>{{messageText}}</div>
+        <button @click="changeMsgText()">变更</button>
+        <div v-show="isShow">v-show指令</div>
     </div>
     <script>
-        const globalName = 'zhangqd'
         const app = new Vue({
             el:'#app', // 挂载Vue实例
             data:{
-                text:'123,456',
+                messageText:'内置指令',
+                isShow:false
             },
-            computed:{
-                // reverseText(){
-                //     this.changeComputed('data变更后computed调用methods')
-                //     return this.text.split(',').reverse().join(',')
-                // },
-                reverseText(){
-                    // const count = this.text
-                    console.log("🚀 ~ file: 3.1.html:30 ~ reverseText ~ this.text", this.text)
-                    this.changeComputed('computed被调用')
-                    return 'computed返回值是常量情况'
-                }
-            },
+            computed:{},
             filters:{},
             created(){
                 console.log('created');                
@@ -43,8 +39,8 @@
                 console.log('beforeDestroy');
             },
             methods:{
-                changeComputed(msg){
-                    console.log(msg);                    
+                changeMsgText(){
+                    this.messageText = '变更后内容'
                 }
             }
         })

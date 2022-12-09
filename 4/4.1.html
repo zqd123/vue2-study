@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>第四章</h2>
+        <my-component :class="{active:isActive}"></my-component>
+        <p :style="styles">style样式</p>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            name:'MyComponent',
+            template:'<p class="article">一些文本</p>'
+        })
+        const app = new Vue({
+            el:'#app', // 挂载Vue实例
+            data:{
+                isActive:true,
+                styles:{
+                    color: 'red',
+                    fontSize: '2rem'
+                }
+            },
+            computed:{},
+            filters:{},
+            created(){
+                console.log('created');                
+            },
+            mounted(){
+                console.log('mounted');
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy');
+            },
+            methods:{}
+        })
+    </script>
+</body>
+</html>
