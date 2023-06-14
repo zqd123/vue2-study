@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <Parent></Parent>
+    </div>
+    <script>
+        /**
+         * 组件通讯
+         * 3. $attrs $listeners
+         * 适用场景：祖孙组件传值
+         * 使用方式：爷爷组件中：在父组件上v-bind绑定数据 - 父组件中：不在props中接收，在孙组件上使用v-bind="$attrs" - 孙组件中：使用props接收
+         * 注意：爷爷组件可以绑定多个值，父子组件可以各取所需，但父组件取了，子组件就取不到了
+        */
+
+       Vue.component('Parent',{
+        template:'<div>父组件:{{msg}}<Child :msg="msg" :age="age"></Child></div>',
+        data(){
+            return {
+                msg:'parent message',
+                age:96
+            }
+        },
+    })
+    Vue.component('Child',{
+        template:'<div>子组件<Grandson v-bind="$attrs"></Grandson></div>',
+        props:{
+            msg:String//儿子消费后，孙子就没了
+        }
+       })
+       Vue.component('Grandson',{
+        template:'<div>孙子组件{{msg}}{{age}}</div>',
+        props:{
+            msg:String,
+            age:Number
+        }
+       })
+        const app = new Vue({
+            el:'#app', // 挂载Vue实例
+            data:{
+                messageText:'内置指令',
+                isShow:false
+            },
+            computed:{},
+            filters:{},
+            created(){
+                console.log('created');                
+            },
+            mounted(){
+                console.log('mounted');
+            },
+            beforeDestroy(){
+                console.log('beforeDestroy');
+            },
+            methods:{
+                changeMsgText(){
+                    this.messageText = '变更后内容'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
