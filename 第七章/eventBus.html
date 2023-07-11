@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <component-a></component-a>
+        <component-b></component-b>
+    </div>
+    <script>
+        //空Vue实例-作为中央事件总线
+        const bus = new Vue()
+        // 子组件a
+        Vue.component('component-a',{
+            template:`<div><button @click="handleEvent">child a</button><div>{{msg}}</div></div>`, 
+            data(){
+                return {
+                    msg: '接收兄弟组件消息'
+                }
+            },
+            created(){
+                bus.$on('on-brother',(msg)=> this.msg = msg)
+            },
+            methods:{
+                handleEvent(){
+                    bus.$emit('on-message','hello I am a')
+                }
+            }
+        })
+        // 子组件b
+        Vue.component('component-b',{
+            template:`<button @click="handleEvent">child b</button>`,
+            methods:{
+                handleEvent(){
+                    bus.$emit('on-message','hello I am b')
+                    bus.$emit('on-brother','hello a I am b')
+                }
+            }
+        })
+        const app = new Vue({
+            el:'#app',
+            data:{
+                msg:'hello world'
+            },
+            created(){
+                bus.$on('on-message',(value)=>{
+                    this.msg = value
+                })
+            }
+        })
+    </script>
+</body>
+</html>
