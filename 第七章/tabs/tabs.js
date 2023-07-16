@@ -29,6 +29,10 @@ Vue.component('tabs',{
             navList:[]
         }
     },
+    mounted(){
+        // this.getTabs(); \
+        console.log(this.$children);
+    },
     methods:{
         tabCls(item){
             return [
@@ -41,10 +45,9 @@ Vue.component('tabs',{
         },
         getTabs(){  
             //通过遍历子组件，得到所有的pane组件
-            return this.$children.filter((item)=>{
-                return item.$options.name === 'pane';
-            }
-            )
+            return this.$children.filter((item) => {
+                 return item.$options.name === 'pane';
+            })
         },
         updateNav(){
             this.navList = [];
