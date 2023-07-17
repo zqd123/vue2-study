@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <tabs v-model="picked" class="tabs" :is-close="true" @edit="handleTabsEdit">
+            <!-- 自定义一个组件，用于混淆子组件 -->
+            <custom>123</custom>
+            <pane v-for="item in paneList" :key="item.name" :label="item.label" :name="item.name">{{item.content}}</pane>
+        </tabs>
+    </div>
+    <script src="./tabs.js"></script>
+    <script src="./pane.js"></script>
+    <script>
+        Vue.component('custom',{
+            template: '<div>custom</div>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                picked: 'first',
+                paneList: [
+                    {
+                        label: '标签一',
+                        name: 'first',
+                        content: '1'
+                    },
+                    {
+                        label: '标签二',
+                        name: 'second',
+                        content: '2'
+                    },
+                    {
+                        label: '标签三',
+                        name: 'threes',
+                        content: '3'
+                    }
+                ]
+            },
+            methods: {
+                handleTabsEdit (name) {
+                    console.log(name)
+                    this.paneList = this.paneList.filter(item => item.name !== name)
+                    this.picked = this.paneList[0].name
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
