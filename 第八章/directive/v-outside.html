@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button ref="bt" @click="show = !show">下拉框</button>
+      <div
+        v-show="show"
+        v-outside.esc="close"
+        style="border: 1px solid; width: 100px"
+      >
+        下拉框内容，点击外面区域可以关闭
+      </div>
+    </div>
+    <script>
+      Vue.directive("outside", {
+        bind(el, binding, vnode) {
+          console.log("🚀 ~ file: outside.html:19 ~ bind ~ binding:", binding);
+          function documentHandler(e) {
+            console.log("e", e);
+            if (el.contains(e.target)) {
+              return false;
+            }
+            if (binding.expression) {
+              binding.value(e);
+            }
+          }
+          function keyHandler(e) {
+            if (!binding.modifiers.esc) {
+              return false;
+            }
+            console.log("🚀 ~ file: outside.html:39 ~ keyHandler ~ e:", e);
+            if (e.keyCode === 27 && binding.expression) {
+              binding.value(e);
+            }
+            return false;
+          }
+          document.addEventListener("click", documentHandler);
+          document.addEventListener("keyup", keyHandler);
+          el.__vueClickOutside__ = documentHandler;
+          el._customKeyup = keyHandler;
+          console.log(el);
+        },
+        unbind(el, binding) {
+          document.removeEventListener("click", el.__vueClickOutside__);
+          document.removeEventListener("keyup", el._customKeyup);
+
+          delete el.__vueClickOutside__;
+          delete el._customKeyup;
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          message: "hello world",
+          show: true,
+        },
+        mounted() {
+          // document.addEventListener('click',this.close)
+        },
+        methods: {
+          close(e) {
+            if (e.type === "keyup") {
+              if (e.keyCode !== 27) {
+                return;
+              }
+              this.show = false;
+            }
+
+            if (e.type === "click") {
+              if (this.$refs.bt.contains(e.target)) {
+                return;
+              }
+              this.show = false;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
