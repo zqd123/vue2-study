@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{message}}
+      <label for="inputField">输入字段：</label>
+      <input type="text" id="inputField">
+      <h2>二级标签</h2>
+      <anchor :level="1" title="标签">
+        <span slot="default">一级标签</span>
+        <span slot="custom">一级标签-custom</span>
+    </anchor>
+    </div>
+
+    <script>
+        Vue.directive('my-custom-directive',{})
+      Vue.component("anchor", {
+        props: {
+          level: {
+            type: Number,
+            required: true,
+          },
+          title: {
+            type: String,
+            required: true,
+          },
+        },
+        created() {
+          console.log("this:", this);
+          console.log('slot:',this.$slots.custom);
+          
+        },
+        render: function (createElement) {
+          /**
+           * createElement函数接收的三个参数
+           * 1. html标签、自定义组件、或者是一个函数（但要return一个标签或组件）-必选
+           * 2. 传入的数据对象，在template中使用-可选
+           *    2.1 class: 组件的class，和v-bind:class一样的API
+           *    2.2 style: 和v-bind:style一样的API
+           *    2.3 attrs: 正常的HTML属性
+           *    2.4 props: 组件props（暂不知到怎么用）
+           *    2.5 domProps: DOM属性（属性会直接添加到DOM上）
+           *    2.6 on: 自定义事件监听器
+           *    2.7 nativeOn: 原生事件监听器(仅当第一个参数是自定义组件时生效，原生标签使用报错)
+           *    2.8 directives: 使用自定义的指令
+           *    2.9 scopedSlots: 作用域插槽（暂不知道作用）
+           * 3. 子节点（VNodes）数组，-可选
+           */
+          return createElement("h" + this.level, [
+            createElement(
+              "a",
+              {
+                class: {
+                  foo: true,
+                },
+                style: {
+                  color: "red",
+                },
+                attrs: {
+                  id: "foo",
+                },
+                props: {
+                  myProp: "bar",
+                },
+                domProps: {
+                  href: "#" + this.title,
+                },
+                on:{
+                    click:()=>{
+                        console.log('click')
+                    }
+                },
+                // 只能用于自定义组件
+                // nativeOn:{
+                //     click:()=>{
+                //         console.log('nativeOn click')
+                //     }
+                // },
+                directives:[
+                    {
+                        name:'my-custom-directive', 
+                        value:'2',
+                        expression:'1+1',
+                        arg:'foo',
+                        modifiers:{
+                            bar:true
+                        }
+                    }
+                ],
+                scopedSlots:{
+                    default: props=>createElement('span','123') 
+                },
+                // scopedSlots:{
+                //     slot:'default',
+                //     //其他特殊顶层属性
+                //     key:'myKey',
+                //     ref:'myRef'
+                // }
+
+              },
+            //   this.$slots.default //这里子节点是个插槽，类型也是VNode[]
+              this.$slots.custom //这里子节点是个插槽，类型也是VNode[]
+            ),
+          ]);
+        },
+      });
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "hello world",
+        },
+      });
+    </script>
+  </body>
+</html>
