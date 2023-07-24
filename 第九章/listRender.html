@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ele :list="list"></ele>
+        <button @click="handleClick">显示列表</button>
+    </div>
+    <script>
+      Vue.component("ele", {
+        props:{
+            list:{
+                type:Array,
+                default:()=>[]
+                   }
+        },
+        render(createElement){
+            if (this.list.length) {
+                return createElement('ul',this.list.map(item=>createElement('li',item)));
+            } else {
+                return createElement('p','列表为空')
+            }
+        }
+
+            
+      });
+      new Vue({ el: "#app",
+    data:{
+        list:[]
+    },
+methods:{
+    handleClick(){
+        this.list=[
+            '《vue.js实战》',
+            '《javascript高级程序设计》',
+            '《javascript语言精粹》'
+        ]
+    }
+}
+});
+    </script>
+  </body>
+</html>
