@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+        <input type="text" name="qe" id="">
+      <smart-item :data="data"></smart-item>
+      <button @click="change('video')">切换</button>
+    </div>
+    <script>
+        // 图片组件选项
+        const ImgItem = {
+            props:['data'],
+            render(createElement){
+                return createElement('div',[
+                    createElement('p','图片组件'),
+                    createElement('img',{
+                        attrs:{
+                            src:this.data.src
+                        }
+                    })
+                ])
+            }
+        }
+        // 视频组件选项
+        const VideoItem = {
+            props:['data'],
+            render(createElement){
+                return createElement('div',[
+                    createElement('p','视频组件'),
+                    createElement('video',{
+                        attrs:{
+                            src:this.data.src,
+                            controls:'controls',
+                            autoplay:'autoplay'
+                        }
+                    })
+                ])
+            }
+        }
+        // 文本组件选项
+        const TextItem = {
+            props:['data'],
+            render(createElement){
+                return createElement('div',[
+                    createElement('p','文本组件'),
+                    createElement('p',this.data.text)
+                ])
+            }
+        }
+      Vue.component("smart-item", {
+        // 函数化组件
+        functional:true,
+        render(createElement,context){
+            console.log("🚀 ~ file: functional.html:60 ~ render ~ context:", context)
+            function getComponent(){
+
+                if(context.props.data.type === 'img') return ImgItem;
+                if(context.props.data.type === 'video') return VideoItem;
+                if(context.props.data.type === 'text') return TextItem;
+            }
+            return createElement(
+                getComponent(),
+                {
+                    props:{
+                        data:context.props.data
+                    }
+                },
+                context.children
+            )
+        }
+      });
+      new Vue({ el: "#app",
+    data:{
+        data:{}
+    },
+    created(){
+        this.change('img')
+    },
+    methods:{
+        change(type){
+            if(type === 'img'){
+                this.data = {
+                    type:'img',
+                    src:'https://file.iviewui.com/view-design-dist/img/logo.362917a9.png'
+                }
+            }else if(type === 'video'){
+                this.data = {
+                    type: 'video',
+                    url: 'http://vjs.zencdn.net/v/oceans.mp4'
+                }
+            }else if(type === 'text'){
+                this.data = {
+                    type: 'text',
+                    text: '文本内容'
+                }
+            }
+        },
+    }
+    });
+    </script>
+  </body>
+</html>
