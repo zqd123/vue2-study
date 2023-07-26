@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <div v-drag style="width:100px;height:100px;background:red;position:absolute;left:0;top:0"></div> -->
+        <div v-mdrag style="width:200px;height:200px;background:rgb(24, 153, 93);position:absolute;left:20px;top:10px"></div>
+    </div>
+    <script>
+        Vue.directive('mdrag',{
+            bind(el,binding,VNode){
+                el.onmousedown = (e)=>{
+                    console.log('e',e);
+                    document.onmousemove = (me)=>{
+                        el.style.left = `${me.clientX-e.offsetX}px`
+                        el.style.top = `${me.clientY-e.offsetY}px`
+                        
+                    }
+                    document.onmouseup = ()=>{
+                        document.onmousemove = null
+                        document.onmouseup = null
+                    }
+                }
+            }
+        })
+        Vue.directive('drag',{
+            bind(el,binding,vnode){
+                el.onmousedown = function(e){
+                    const disX = e.clientX - el.offsetLeft
+                    const disY = e.clientY - el.offsetTop
+                    document.onmousemove = function(e){
+                        el.style.left = e.clientX - disX + 'px'
+                        el.style.top = e.clientY - disY + 'px'
+                    }
+                    document.onmouseup = function(){
+                        document.onmousemove = null
+                        document.onmouseup = null
+                    }
+                }
+            }
+        })
+        new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>
