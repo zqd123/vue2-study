@@ -1,35 +1,36 @@
-import _ from 'lodash';
- import printMe from './print.js';
+import _ from "lodash";
+import printMe from "./print.js";
+import "./style.css";
 
-  function component() {
-    var element = document.createElement('div');
-   var btn = document.createElement('button');
+function component() {
+  var element = document.createElement("div");
+  var btn = document.createElement("button");
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join(["Hello", "webpack"], " ");
 
-   btn.innerHTML = '点击这里，然后查看 console！';
-   btn.onclick = printMe;
+  btn.innerHTML = "点击这里，然后查看 console！";
+  btn.onclick = printMe;
 
-   element.appendChild(btn);
+  element.appendChild(btn);
 
-    return element;
-  }
+  return element;
+}
 
-  document.body.appendChild(component());
+document.body.appendChild(component());
 
-  function es2020() {
-    var element = document.createElement('div');
-   var btn = document.createElement('button');
+function es2020() {
+  var element = document.createElement("div");
+  var btn = document.createElement("button");
 
-   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-   
-   const isNull = null;
-   btn.innerHTML = isNull ?? '点击这里，然后查看 console！';
-   btn.onclick = printMe;
+  element.innerHTML = _.join(["Hello", "webpack"], " ");
 
-   element.appendChild(btn);
+  const isNull = null;
+  btn.innerHTML = isNull ?? "点击这里，然后查看 console！";
+  btn.onclick = printMe;
 
-    return element;
-  }
+  element.appendChild(btn);
 
-  document.body.appendChild(es2020());
+  return element;
+}
+
+document.body.appendChild(es2020());
