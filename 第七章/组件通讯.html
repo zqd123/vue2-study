@@ -14,32 +14,48 @@
     <script>
         /**
          * 组件通讯
-         * 3. $attrs $listeners
+         * 3. $attrs 
          * 适用场景：祖孙组件传值
          * 使用方式：爷爷组件中：在父组件上v-bind绑定数据 - 父组件中：不在props中接收，在孙组件上使用v-bind="$attrs" - 孙组件中：使用props接收
          * 注意：爷爷组件可以绑定多个值，父子组件可以各取所需，但父组件取了，子组件就取不到了
+         * 
+         * 4. $listeners
+         * 适用场景: 孙组件调用祖组件事件
+         * 适用方式: 爷爷组件中:在父组件上绑定事件 - 父组件中: 在孙子组件上使用v-on="$listener" - 孙组件中: $emit('')触发
         */
 
        Vue.component('Parent',{
-        template:'<div>父组件:{{msg}}<Child :msg="msg" :age="age"></Child></div>',
+        template:'<div>父组件:{{msg}}<Child :msg="msg" :age="age" @grandChildHandle="grandChildHandle"></Child></div>',
         data(){
             return {
                 msg:'parent message',
                 age:96
             }
         },
+        methods:{
+            grandChildHandle(){
+                console.log('祖父组件事件!');
+                
+            }
+        }
     })
     Vue.component('Child',{
-        template:'<div>子组件<Grandson v-bind="$attrs"></Grandson></div>',
+        template:'<div>子组件<Grandson v-bind="$attrs" v-on="$listeners"></Grandson></div>',
         props:{
             msg:String//儿子消费后，孙子就没了
         }
        })
        Vue.component('Grandson',{
-        template:'<div>孙子组件{{msg}}{{age}}</div>',
+        template:'<div></button><div>孙子组件{{msg}}{{age}}</div><button @click="emitGrandFather">触发祖父组件事件</button></div>',
         props:{
             msg:String,
             age:Number
+        },
+        methods:{
+
+            emitGrandFather(){
+                this.$emit('grandChildHandle')
+            }
         }
        })
         const app = new Vue({
